@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_nav_graph"
+    app:startDestination="@id/splashFragment">
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.travisit.travisitstandard.vvm.destination.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash">
+        <action
+            android:id="@+id/action_to_auth_graph"
+            app:destination="@id/auth_graph"
+            app:enterAnim="@anim/slide_from_out_right_to_center"
+            app:exitAnim="@anim/slide_from_center_to_out_left"
+            app:popUpTo="@id/app_nav_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
+
+    <navigation
+        android:id="@+id/auth_graph"
+        app:startDestination="@id/authenticationFragment">
+        <fragment
+            android:id="@+id/authenticationFragment"
+            android:name="com.travisit.travisitstandard.vvm.destination.AuthenticationFragment"
+            android:label="authentication_fragment"
+            tools:layout="@layout/fragment_authentication">
+            <action
+                android:id="@+id/action_from_auth_to_reg"
+                app:destination="@id/registrationFragment"
+                app:enterAnim="@anim/slide_from_out_right_to_center"
+                app:exitAnim="@anim/slide_from_center_to_out_left"
+                app:popUpTo="@id/authenticationFragment"
+                app:popUpToInclusive="false"/>
+            <action
+                android:id="@+id/action_from_auth_to_forgot_password"
+                app:destination="@id/forgotPasswordFragment"
+                app:enterAnim="@anim/slide_from_out_right_to_center"
+                app:exitAnim="@anim/slide_from_center_to_out_left"
+                app:popUpTo="@id/authenticationFragment"
+                app:popUpToInclusive="false"/>
+            <action
+                android:id="@+id/action_from_auth_to_home"
+                app:destination="@id/homeFragment"
+                app:enterAnim="@anim/slide_from_out_right_to_center"
+                app:exitAnim="@anim/slide_from_center_to_out_left"
+                app:popUpTo="@id/app_nav_graph"
+                app:popUpToInclusive="false"/>
+        </fragment>
+        <fragment
+            android:id="@+id/registrationFragment"
+            android:name="com.travisit.travisitstandard.vvm.destination.RegistrationFragment"
+            android:label="registration_fragment"
+            tools:layout="@layout/fragment_registration">
+            <action
+                android:id="@+id/action_from_reg_to_auth"
+                app:destination="@id/authenticationFragment"
+                app:enterAnim="@anim/slide_from_out_left_to_center"
+                app:exitAnim="@anim/slide_from_center_to_out_right" />
+            <action
+                android:id="@+id/action_from_reg_to_complete_traveler_profile"
+                app:destination="@id/travelerCompleteProfileFragment"
+                app:enterAnim="@anim/slide_from_out_left_to_center"
+                app:exitAnim="@anim/slide_from_center_to_out_right">
+                <argument
+                    android:name="user"
+                    android:defaultValue="@null"
+                    app:argType="com.travisit.travisitstandard.model.User"
+                    app:nullable="true"/>
+            </action>
+            <action
+                android:id="@+id/action_from_reg_to_complete_guide_profile"
+                app:destination="@id/guideCompleteProfileFragment"
+                app:enterAnim="@anim/slide_from_out_left_to_center"
+                app:exitAnim="@anim/slide_from_center_to_out_right">
+                <argument
+                    android:name="user"
+                    android:defaultValue="@null"
+                    app:argType="com.travisit.travisitstandard.model.User"
+                    app:nullable="true"/>
+            </action>
+        </fragment>
+        <fragment
+            android:id="@+id/forgotPasswordFragment"
+            android:name="com.travisit.travisitstandard.vvm.destination.ForgotPasswordFragment"
+            android:label="fragment_forgot_password"
+            tools:layout="@layout/fragment_forgot_password" >
+            <action
+                android:id="@+id/action_from_forgot_password_to_auth"
+                app:destination="@id/authenticationFragment"
+                app:enterAnim="@anim/slide_from_out_left_to_center"
+                app:exitAnim="@anim/slide_from_center_to_out_right" />
+        </fragment>
+        <fragment
+            android:id="@+id/travelerCompleteProfileFragment"
+            android:name="com.travisit.travisitstandard.vvm.destination.TravelerCompleteProfileFragment"
+            android:label="fragment_traveler_complete_profile"
+            tools:layout="@layout/fragment_traveler_complete_profile" />
+        <fragment
+            android:id="@+id/guideCompleteProfileFragment"
+            android:name="com.travisit.travisitstandard.vvm.destination.GuideCompleteProfileFragment"
+            android:label="fragment_guide_complete_profile"
+            tools:layout="@layout/fragment_guide_complete_profile" />
+    </navigation>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.travisit.travisitstandard.vvm.destination.homeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/exploreFragment"
+        android:name="com.travisit.travisitstandard.vvm.destination.ExploreFragment"
+        android:label="fragment_explore"
+        tools:layout="@layout/fragment_explore" />
+    <fragment
+        android:id="@+id/chatListFragment"
+        android:name="com.travisit.travisitstandard.vvm.destination.chatListFragment"
+        android:label="fragment_chat_list"
+        tools:layout="@layout/fragment_chat_list" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.travisit.travisitstandard.vvm.destination.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/accountFragment"
+        android:name="com.travisit.travisitstandard.vvm.destination.AccountFragment"
+        android:label="fragment_account_fragment"
+        tools:layout="@layout/fragment_account" />
+
+
+</navigation>

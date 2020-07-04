@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    tools:context=".vvm.destination.TravelerCompleteProfileFragment">
+
+    <!-- Back Arrow -->
+    <ImageView
+        android:id="@+id/f_traveler_complete_profile_iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Complete Profile Header -->
+    <TextView
+        android:id="@+id/f_traveler_complete_profile_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/segoeui_font"
+        android:text="@string/complete_profile_header"
+        android:textColor="@color/colorHeaderBlackRussian"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/f_traveler_complete_profile_iv_back"
+        app:layout_constraintTop_toTopOf="@id/f_traveler_complete_profile_iv_back" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_tv_title">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- Profile Picture -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/f_traveler_complete_profile_civ_pp"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_profile_avatar"
+                app:civ_border_width="2dp"
+                android:layout_marginTop="15dp"
+                app:civ_border_color="#FF000000"
+                app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintEnd_toEndOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <!-- FullName Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_traveler_complete_profile_til_full_name"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:hint="@string/hint_full_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_civ_pp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_traveler_complete_profile_tiet_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Email Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_traveler_complete_profile_til_email_address"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_email"
+                app:layout_constraintEnd_toEndOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_til_full_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_traveler_complete_profile_tiet_email_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Phone Number Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_traveler_complete_profile_til_phone"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_phone"
+                app:layout_constraintEnd_toEndOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_til_email_address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_traveler_complete_profile_tiet_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Nationality Selector -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_traveler_complete_profile_til_nationality"
+                style="@style/customOutlinedExposedDropDown"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/hint_nationality"
+                app:endIconDrawable="@drawable/ic_spinner_down_arrow"
+                app:endIconTint="@color/colorDropDownArrow"
+                app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintEnd_toEndOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_til_phone">
+
+                <AutoCompleteTextView
+                    android:id="@+id/f_traveler_complete_profile_tiet_nationality"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="false"
+                    android:importantForAutofill="no"
+                    android:inputType="none"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Languages Dropdown-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_traveler_complete_profile_til_languages"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_languages"
+                app:layout_constraintEnd_toEndOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_til_nationality">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_traveler_complete_profile_tiet_lang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Interests Selection TextView -->
+            <TextView
+                android:id="@+id/f_traveler_complete_profile_tv_interests"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/segoeui_font"
+                android:text="@string/interests"
+                android:textColor="@color/colorSubHeaderSummerSky"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_languages"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_til_languages" />
+            <!-- Interests Search -->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_traveler_complete_profile_til_search_interests"
+                style="@style/customBlueUnFilledBox"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/hint_search_interests"
+                app:boxStrokeColor="@color/colorGreenMessage"
+                app:hintTextColor="@color/colorPlaceholderGrey"
+                app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_tv_interests">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_traveler_complete_profile_tiet_search_interests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/segoeui_font"
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:includeFontPadding="false"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/colorValueGrey"
+                    android:textStyle="bold"
+                    app:boxStrokeColor="@color/colorGreenMessage" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Interests RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/f_traveler_complete_profile_rv_categories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_til_search_interests"
+                tools:listitem="@layout/item_summer_sky_chip" />
+            <!--  Submit for Verification Button  -->
+            <Button
+                android:id="@+id/f_guide_complete_profile_btn_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/blue_gradient_rounded_corners"
+                android:enabled="false"
+                android:fontFamily="@font/segoeui_bold_font"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:text="@string/save"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_rv_categories" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

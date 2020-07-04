@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".vvm.destination.GuideCompleteProfileFragment">
+    <!-- Back Arrow -->
+    <ImageView
+        android:id="@+id/f_guide_complete_profile_iv_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Complete Profile Header -->
+    <TextView
+        android:id="@+id/f_guide_complete_profile_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="@font/segoeui_font"
+        android:text="@string/complete_profile_header"
+        android:textColor="@color/colorHeaderBlackRussian"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@id/f_guide_complete_profile_iv_back"
+        app:layout_constraintTop_toTopOf="@id/f_guide_complete_profile_iv_back" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:paddingBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_tv_title"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- Profile Picture -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/f_guide_complete_profile_civ_pp"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:src="@drawable/ic_profile_avatar"
+                app:civ_border_width="2dp"
+                android:layout_marginTop="15dp"
+                app:civ_border_color="#FF000000"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintEnd_toEndOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toTopOf="parent"/>
+            <!-- FullName Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_guide_complete_profile_til_full_name"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="25dp"
+                android:layout_marginStart="50dp"
+                android:hint="@string/hint_full_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_civ_pp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_guide_complete_profile_tiet_full_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Email Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_guide_complete_profile_til_email_address"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_email"
+                app:layout_constraintEnd_toEndOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_full_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_guide_complete_profile_tiet_email_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Phone Number Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_guide_complete_profile_til_phone"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_phone"
+                app:layout_constraintEnd_toEndOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_email_address">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_guide_complete_profile_tiet_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:inputType="number"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+             <!-- Languages Dropdown-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_guide_complete_profile_til_languages"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_languages"
+                app:layout_constraintEnd_toEndOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_phone">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_guide_complete_profile_tiet_lang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Years of Experience Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_guide_complete_profile_til_experience_years"
+                style="@style/customOutLinedBox"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_years_of_experience"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_languages">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_guide_complete_profile_tiet_experience_years"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Areas Selection TextView -->
+            <TextView
+                android:id="@+id/f_guide_complete_profile_tv_areas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/segoeui_font"
+                android:text="@string/areas"
+                android:textColor="@color/colorSubHeaderSummerSky"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_experience_years" />
+            <!-- Areas RecyclerView -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/f_guide_complete_profile_rv_categories"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                app:layout_constraintEnd_toEndOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_tv_areas"
+                tools:listitem="@layout/item_summer_sky_chip" />
+            <!--  Submit for Verification Button  -->
+            <Button
+                android:id="@+id/f_guide_complete_profile_btn_submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="60dp"
+                android:background="@drawable/blue_gradient_rounded_corners"
+                android:enabled="false"
+                android:fontFamily="@font/segoeui_bold_font"
+                android:paddingStart="50dp"
+                android:paddingEnd="50dp"
+                android:text="@string/submit_for_verification_button"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_rv_categories" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

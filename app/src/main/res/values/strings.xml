@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Travisit</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="f_auth_welcome_back">Welcome Back</string>
+    <string name="f_auth_sign_in">Sign In!</string>
+    <string name="hint_email">EMAIL ADDRESS</string>
+    <string name="hint_password">PASSWORD</string>
+    <string name="hint_sign_in_as">SIGN IN AS</string>
+    <string name="forgot_password_q">Forgot password?</string>
+    <string name="sign_in">Sign In</string>
+    <string name="go_to_sign_up">Don\'t have an account? <![CDATA[<font color=#46B8F0>Sign up</font>]]></string>
+    <string name="f_registration_hello">Hello,</string>
+    <string name="f_registration_sign_up">Sign Up!</string>
+    <string name="hint_full_name">FULL NAME</string>
+    <string name="switch_agree_to_terms">I agree to the policy &amp; terms</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="go_to_sign_in">Already have an account? <![CDATA[<font color=#46B8F0>Sign in</font>]]></string>
+    <string name="forgot_password_q_divided">Forgot \nPassword?</string>
+    <string name="reset_password">Reset Password</string>
+    <string name="complete_profile_header">Complete Profile</string>
+    <string name="hint_phone">PHONE NUMBER</string>
+    <string name="hint_languages">LANGUAGES</string>
+    <string name="hint_years_of_experience">YEARS OF EXPERIENCE</string>
+    <string name="areas">Areas you\'re available in</string>
+    <string name="submit_for_verification_button">Submit for verification</string>
+    <string name="hint_nationality">NATIONALITY</string>
+    <string name="interests">Interests</string>
+    <string name="hint_search_interests">Search Interests</string>
+    <string name="save">save</string>
+
+</resources>
