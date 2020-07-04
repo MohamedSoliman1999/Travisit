@@ -62,7 +62,6 @@ public class AppActivity extends AppCompatActivity implements BottomNavigationCo
             public void onClick(View v) {
                 NavDestination destination = getFragment();
 
-
                 if ("fragment_home".equals(destination.getLabel())) {
                     //navHostFragment.getNavController().navigate(R.id.action_to_add_offer);
                 } else if ("fragment_explore".equals(destination.getLabel())) {
