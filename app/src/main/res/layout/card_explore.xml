@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="20dp"
+    android:layout_marginEnd="20dp"
+    app:cardCornerRadius="30dp"
+    app:cardElevation="10dp"
+    android:background="@color/colorWhite"
+    app:cardPreventCornerOverlap="true"
+    app:cardUseCompatPadding="false">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/card_explore_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="6dp"
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="15dp">
+        <!-- Image -->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/card_explore_sdv_image"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:actualImageResource="@drawable/dummy_pp"
+            app:actualImageScaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundedCornerRadius="5dp"/>
+        <!-- Title TextView -->
+        <TextView
+            android:id="@+id/card_explore_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:fontFamily="@font/opensans_bold_font"
+            android:textColor="@color/colorHeaderBlack"
+            android:textSize="20sp"
+            app:layout_constraintStart_toEndOf="@id/card_explore_sdv_image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Offer name" />
+        <!-- Rating Star -->
+        <ImageView
+            android:id="@+id/card_explore_iv_star"
+            android:layout_width="18dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_star"
+            app:layout_constraintStart_toStartOf="@id/card_explore_tv_booked_by_number"
+            app:layout_constraintBottom_toBottomOf="@id/card_explore_tv_rating"
+            app:layout_constraintTop_toTopOf="@id/card_explore_tv_rating" />
+        <!-- Rating TextView -->
+        <TextView
+            android:id="@+id/card_explore_tv_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:fontFamily="@font/poppins_regular_font"
+            android:textColor="@color/colorRatingSaffron"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@id/card_explore_iv_star"
+            app:layout_constraintTop_toBottomOf="@id/card_explore_tv_booked_by_number"
+            tools:text="4.5" />
+        <!-- Date TextView -->
+        <TextView
+            android:id="@+id/card_explore_tv_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular_font"
+            android:textColor="@color/colorCreatePagesGreen"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/card_explore_tv_name"
+            app:layout_constraintTop_toBottomOf="@id/card_explore_tv_name"
+            tools:text="20-09-2029" />
+        <!-- Booked By Number TextView -->
+        <TextView
+            android:id="@+id/card_explore_tv_booked_by_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular_font"
+            android:textColor="@color/colorCreatePagesGreen"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/card_explore_tv_name"
+            app:layout_constraintTop_toBottomOf="@id/card_explore_tv_date"
+            tools:text="15" />
+        <!-- Booked By Text TextView -->
+        <TextView
+            android:id="@+id/card_explore_tv_booked_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_regular_font"
+            android:textColor="@color/colorValueGrey"
+            android:textSize="16sp"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            app:layout_constraintStart_toEndOf="@id/card_explore_tv_booked_by_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/card_explore_tv_date"
+            android:text="@string/people_have_booked_this" />
+        <!-- Added By Text TextView -->
+        <TextView
+            android:id="@+id/card_explore_tv_added_by"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_regular_font"
+            android:textColor="@color/colorSearchBarPlaceholder"
+            android:textSize="20sp"
+            android:text="@string/by"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/card_explore_sdv_image"
+            app:layout_constraintTop_toBottomOf="@id/card_explore_sdv_image"/>
+        <!-- Added By Picture -->
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/f_explore_sdv_added_by"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            app:actualImageResource="@drawable/dummy_pp"
+            app:actualImageScaleType="centerInside"
+            app:layout_constraintTop_toTopOf="@id/card_explore_tv_added_by"
+            app:layout_constraintBottom_toBottomOf="@id/card_explore_tv_added_by"
+            app:layout_constraintStart_toEndOf="@id/card_explore_tv_added_by"
+            app:roundedCornerRadius="35dp"
+            app:roundingBorderColor="@color/colorBorderSummerSky"
+            app:roundingBorderWidth="1dp" />
+        <!-- Added By Name TextView -->
+        <TextView
+            android:id="@+id/card_explore_tv_added_by_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_regular_font"
+            android:textColor="@color/colorGreenMessage"
+            android:textSize="20sp"
+            tools:text="Hayllie"
+            android:layout_marginStart="15dp"
+            app:layout_constraintStart_toEndOf="@id/f_explore_sdv_added_by"
+            app:layout_constraintTop_toTopOf="@id/card_explore_tv_added_by"
+            app:layout_constraintBottom_toBottomOf="@id/card_explore_tv_added_by"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

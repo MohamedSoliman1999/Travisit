@@ -12,11 +12,13 @@ import androidx.navigation.Navigation;
 import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import com.travisit.travisitstandard.R;
+import com.travisit.travisitstandard.data.Client;
 import com.travisit.travisitstandard.databinding.FragmentAuthenticationBinding;
 import com.travisit.travisitstandard.model.User;
 import com.travisit.travisitstandard.utils.SharedPrefManager;
@@ -37,7 +39,7 @@ public class AuthenticationFragment extends Fragment {
         @Override
         public void afterTextChanged(Editable s) {
             if (getFieldText("email").length() == 0 ||
-                    getFieldText("password").length() == 0 ||
+                    getFieldText("password").length() < 6 ||
                     getFieldText("user type").length() == 0){
                 binding.fAuthBtnSignIn.setEnabled(false);
             } else {
@@ -52,7 +54,7 @@ public class AuthenticationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        ((AppActivity)getActivity()).changeBottomNavVisibility(View.GONE);
+        ((AppActivity)getActivity()).changeBottomNavVisibility(View.GONE, false);
         binding = FragmentAuthenticationBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         return view;
@@ -62,7 +64,7 @@ public class AuthenticationFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         preferences = new SharedPrefManager(getActivity());
         vm = ViewModelProviders.of(this).get(AuthenticationVM.class);
-        String[] userType = new String[] {"Traveller", "Tour Guide"};
+        String[] userType = new String[] {"Traveler", "Tour Guide"};
         ArrayAdapter<String> adapter =
                 new ArrayAdapter<String>(
                         getContext(),
@@ -97,6 +99,14 @@ public class AuthenticationFragment extends Fragment {
                     @Override
                     public void onChanged(User user) {
                         preferences.saveUser(user);
+                        Client.reinstantiateClient(
+                                user.getToken()
+                        );
+                        if(user.getType().contains("guide")){
+                            AppActivity.isTourGuide = true;
+                        } else {
+                            AppActivity.isTourGuide = false;
+                        }
                         //TODO: CHECK USER STATUS TO NAVIGATE
                         Navigation.findNavController(view).navigate(R.id.action_from_auth_to_home);
                     }
@@ -106,6 +116,7 @@ public class AuthenticationFragment extends Fragment {
 
         binding.fAuthTietEmailAddress.addTextChangedListener(watcher);
         binding.fAuthTietUserType.addTextChangedListener(watcher);
+        binding.fAuthTietPassword.addTextChangedListener(watcher);
 
     }
     private String getFieldText(String fieldName){

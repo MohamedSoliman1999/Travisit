@@ -40,7 +40,7 @@ public class RegistrationFragment extends Fragment {
         @Override
         public void afterTextChanged(Editable s) {
             if (getFieldText("email").length() == 0 ||
-                    getFieldText("password").length() == 0 ||
+                    getFieldText("password").length() < 6 ||
                     getFieldText("name").length() == 0 ||
                     getFieldText("user type").length() == 0){
                 binding.fRegistrationBtnSignUp.setEnabled(false);
@@ -55,7 +55,7 @@ public class RegistrationFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        ((AppActivity)getActivity()).changeBottomNavVisibility(View.GONE);
+        ((AppActivity)getActivity()).changeBottomNavVisibility(View.GONE, false);
         binding = FragmentRegistrationBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         return view;
@@ -91,8 +91,7 @@ public class RegistrationFragment extends Fragment {
                         getFieldText("email"),
                         getFieldText("password"),
                         getFieldText("user type"),
-                        getFieldText("name"),
-                        "01095252203"
+                        getFieldText("name")
                 );
                 vm.userMutableLiveData.observe(getActivity(), new Observer<User>() {
                     @Override

@@ -16,7 +16,7 @@ public class homeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppActivity) getActivity()).changeBottomNavVisibility(View.GONE);
+        ((AppActivity) getActivity()).changeBottomNavVisibility(View.VISIBLE, false);
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         return view;

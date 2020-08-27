@@ -5,7 +5,6 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.gson.JsonObject;
 import com.travisit.travisitstandard.data.Client;
 import com.travisit.travisitstandard.model.User;
 import com.travisit.travisitstandard.model.forms.SignUpForm;
@@ -18,9 +17,9 @@ import io.reactivex.schedulers.Schedulers;
 public class RegistrationVM extends ViewModel {
     public MutableLiveData<User> userMutableLiveData = new MutableLiveData<>();
     CompositeDisposable compositeDisposable;
-   public void signUp(String email, String password, String userType, String fullName, String phone){
-       SignUpForm signUpForm = new SignUpForm(email, fullName, password, userType, phone);
-            Observable<User> observable = Client.getINSTANCE().signup(signUpForm)
+   public void signUp(String email, String password, String userType, String fullName){
+       SignUpForm signUpForm = new SignUpForm(email, fullName, password, userType);
+            Observable<User> observable = Client.getINSTANCE().signUp(signUpForm)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 

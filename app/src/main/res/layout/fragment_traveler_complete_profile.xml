@@ -159,6 +159,25 @@
                     android:maxLines="1"
                     android:textColor="@color/colorPlaceholderLightGrey" />
             </com.google.android.material.textfield.TextInputLayout>
+            <!-- Languages Dropdown-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_traveler_complete_profile_til_dob"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_dob"
+                app:layout_constraintEnd_toEndOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_til_languages">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/f_traveler_complete_profile_tiet_dob"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
             <!-- Interests Selection TextView -->
             <TextView
                 android:id="@+id/f_traveler_complete_profile_tv_interests"
@@ -170,7 +189,7 @@
                 android:textColor="@color/colorSubHeaderSummerSky"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@id/f_traveler_complete_profile_til_languages"
-                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_til_languages" />
+                app:layout_constraintTop_toBottomOf="@id/f_traveler_complete_profile_til_dob" />
             <!-- Interests Search -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/f_traveler_complete_profile_til_search_interests"
@@ -210,7 +229,7 @@
                 tools:listitem="@layout/item_summer_sky_chip" />
             <!--  Submit for Verification Button  -->
             <Button
-                android:id="@+id/f_guide_complete_profile_btn_submit"
+                android:id="@+id/f_traveler_complete_profile_btn_submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="60dp"

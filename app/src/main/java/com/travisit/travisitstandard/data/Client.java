@@ -1,17 +1,28 @@
 package com.travisit.travisitstandard.data;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.travisit.travisitstandard.model.Language;
+import com.travisit.travisitstandard.model.Offer;
+import com.travisit.travisitstandard.model.Tour;
 import com.travisit.travisitstandard.model.User;
+import com.travisit.travisitstandard.model.forms.EditGuideProfileForm;
+import com.travisit.travisitstandard.model.forms.EditTravelerProfileForm;
+import com.travisit.travisitstandard.model.forms.EmailForm;
+import com.travisit.travisitstandard.model.forms.ResetPasswordForm;
 import com.travisit.travisitstandard.model.forms.SignInForm;
 import com.travisit.travisitstandard.model.forms.SignUpForm;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.Interceptor;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -72,12 +83,49 @@ public class Client {
         INSTANCE = new Client();
     }
 
-    public Observable<User> signup(SignUpForm userData) {
-        return services.signUpBusiness(userData);
+    public Observable<User> signUp(SignUpForm userData) {
+        return services.signUp(userData);
     }
 
     public Observable<User> signIn(SignInForm userData) {
-        return services.signInBusiness(userData);
+        return services.signIn(userData);
+    }
+
+    public Observable<JsonObject> requestResetPasswordCode(EmailForm email) {
+        return services.sendResetPasswordCode(email);
+    }
+
+    public Observable<JsonObject> confirmResetCode(String resetCode) {
+        return services.confirmResetCode(resetCode);
+    }
+
+    public Observable<JsonObject> resetPassword(ResetPasswordForm newPassword) {
+        return services.resetPassword(newPassword);
+    }
+
+
+    public Observable<User> editTravelerProfile(EditTravelerProfileForm userData) {
+        return services.editTravelerProfile(userData);
+    }
+
+    public Observable<User> editGuideProfile(EditGuideProfileForm userData) {
+        return services.editGuideProfile(userData);
+    }
+
+    public Observable<User> changeUserProfilePicture(MultipartBody.Part ppFile) {
+        return services.changeUserProfilePicture(ppFile);
+    }
+    public Observable<ArrayList<Tour>> getTours() {
+        return services.getTours();
+    }
+    public Observable<ArrayList<Offer>> getOffers() {
+        return services.getOffers();
+    }
+    public Completable deleteTour(int id) {
+        return services.deleteTour(id);
+    }
+    public Observable<ArrayList<Language>> getLanguages() {
+        return services.getLanguages(0,50);
     }
 
 }

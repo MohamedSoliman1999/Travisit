@@ -28,7 +28,7 @@ public class SplashFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((AppActivity)getActivity()).changeBottomNavVisibility(View.GONE);
+        ((AppActivity)getActivity()).changeBottomNavVisibility(View.GONE, false);
         binding = FragmentSplashBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         return view;

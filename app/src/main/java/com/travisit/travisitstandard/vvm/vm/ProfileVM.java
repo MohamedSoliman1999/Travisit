@@ -1,5 +1,6 @@
 package com.travisit.travisitstandard.vvm.vm;
 
+import android.content.Context;
 import android.util.Log;
 
 import androidx.lifecycle.MutableLiveData;
@@ -9,9 +10,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.travisit.travisitstandard.data.Client;
 import com.travisit.travisitstandard.model.Area;
+import com.travisit.travisitstandard.model.Language;
 import com.travisit.travisitstandard.model.User;
+import com.travisit.travisitstandard.model.forms.EditGuideProfileForm;
+import com.travisit.travisitstandard.model.forms.EditTravelerProfileForm;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import io.reactivex.Observable;
@@ -23,18 +28,40 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 public class ProfileVM extends ViewModel {
-    public MutableLiveData<JsonObject> profileMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<User> profileMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<ArrayList<Area>> categoriesMutableLiveData = new MutableLiveData<>();
+    public MutableLiveData<ArrayList<Language>> languagesMutableLiveData = new MutableLiveData<>();
     public MutableLiveData<User> filePMutableLiveData = new MutableLiveData<>();
     CompositeDisposable compositeDisposable;
     public ArrayList<Integer> selectedAreas = new ArrayList<>();
     public ArrayList<Integer> selectedInterests = new ArrayList<>();
 
-    public void editGuideProfile() {
-        
-    }    
-    public void editTravelerProfile() {
-        
+    public void editGuideProfile(String fullName, String email, String phone, String education, String workExperience, Integer hourlyRate, Integer membershipNumber, Integer licenseNumber) {
+        EditGuideProfileForm editProfileForm = new EditGuideProfileForm(fullName, email, phone, education, workExperience, hourlyRate, membershipNumber, licenseNumber);
+        Observable<User> observable = Client.getINSTANCE().editGuideProfile(editProfileForm)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        compositeDisposable = newa CompositeDisposable();
+        compositeDisposable.add(observable.subscribe(o -> profileMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
+    }
+    public void editGuideProfileWithLinks(String fullName, String email, String phone, String education, String workExperience, Integer hourlyRate, Integer membershipNumber, Integer licenseNumber, String facebookLink, String twitterLink, String linkedinLink, String instagramLink) {
+        EditGuideProfileForm editProfileForm = new EditGuideProfileForm(fullName, email, phone, education, workExperience, hourlyRate, membershipNumber, licenseNumber, facebookLink, twitterLink, linkedinLink, instagramLink);
+        Observable<User> observable = Client.getINSTANCE().editGuideProfile(editProfileForm)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(observable.subscribe(o -> profileMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
+    }
+    public void editTravelerProfile(String fullName, String email, String phone, String dateOfBirth, String nationality) {
+        EditTravelerProfileForm editProfileForm = new EditTravelerProfileForm(fullName, email, phone, dateOfBirth, nationality);
+        Observable<User> observable = Client.getINSTANCE().editTravelerProfile(editProfileForm)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(observable.subscribe(o -> profileMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
     }
 
     public void getInterests() {
@@ -42,6 +69,14 @@ public class ProfileVM extends ViewModel {
     }
     public void getAreas() {
        
+    }
+    public void getLanguages() {
+        Observable<ArrayList<Language>> observable = Client.getINSTANCE().getLanguages()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+
+        compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(observable.subscribe(o -> languagesMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
     }
 
   //  private ArrayList<Area> parseCategories(JsonObject jsonObject) {
@@ -60,63 +95,22 @@ public class ProfileVM extends ViewModel {
 //        return categories;
         //}
 
-////    public void uploadFile(String filePath, Context context, FileType fileType) {
-//    public void uploadFiles(String filePath1, String filePath2) {
-////        String fileName = null;
-////        if (fileType == FileType.GOVERNMENT_ISSUED_NUMBER) {
-////            fileName = "governmentIssuedNumberImage";
-////        } else {
-////            fileName = "logo";
-////        }
-////        if (fileType != null && filePath != null && !filePath.isEmpty()) {
-//        if (filePath1 != null && !filePath1.isEmpty() && filePath2 != null && !filePath2.isEmpty()) {
-////            File file = new File(filePath);
-////            RequestBody requestFile =
-////                    null;
-////            try {
-////                requestFile = RequestBody.create(MediaType.parse("multipart/form-data"),
-////                         new Compressor(context).compressToFile(file));
-////            } catch (IOException e) {
-////                e.printStackTrace();
-////            }
-////            RequestBody requestFile =
-////                    RequestBody.create(MediaType.parse("image/*"), file);
-////            MultipartBody.Part body =
-////                    MultipartBody.Part.createFormData(fileName, file.getName(), requestFile);
-//
-////            compositeDisposable = new CompositeDisposable();
-//
-////            if (fileType == FileType.GOVERNMENT_ISSUED_NUMBER) {
-////                Observable<Business> observable = Client.getINSTANCE().uploadIssuedNumberLogo(body)
-////                        .subscribeOn(Schedulers.io())
-////                        .observeOn(AndroidSchedulers.mainThread());
-////                compositeDisposable.add(observable.subscribe(o -> fileGMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
-////            } else {
-////                Observable<Business> observable = Client.getINSTANCE().changeBusinessLogo(body)
-////                        .subscribeOn(Schedulers.io())
-////                        .observeOn(AndroidSchedulers.mainThread());
-////                compositeDisposable.add(observable.subscribe(o -> fileLMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
-////            }
-//            File file1 = new File(filePath1);
-//            File file2 = new File(filePath2);
-//            RequestBody requestFile1 =
-//                    RequestBody.create(MediaType.parse("image/*"), file1);
-//            MultipartBody.Part body1 =
-//                    MultipartBody.Part.createFormData("logo", file1.getName(), requestFile1);
-//
-//            RequestBody requestFile2 =
-//                    RequestBody.create(MediaType.parse("image/*"), file2);
-//            MultipartBody.Part body2 =
-//                    MultipartBody.Part.createFormData("governmentIssuedNumberImage", file2.getName(), requestFile2);
-//
-//            compositeDisposable = new CompositeDisposable();
-//            Observable<Business> observable = Client.getINSTANCE().uploadBusinessPhotos(body1, body2)
-//                        .subscribeOn(Schedulers.io())
-//                        .observeOn(AndroidSchedulers.mainThread());
-//            compositeDisposable.add(observable.subscribe(o -> photosMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
-//
-//        }
-//    }
+    public void uploadFile(String filePath) {
+        String fileName = "profilePicture";
+        if (filePath != null && !filePath.isEmpty()) {
+            File file1 = new File(filePath);
+            RequestBody requestFile =
+                    RequestBody.create(MediaType.parse("image/*"), file1);
+            MultipartBody.Part body =
+                    MultipartBody.Part.createFormData("logo", file1.getName(), requestFile);
+
+            compositeDisposable = new CompositeDisposable();
+            Observable<User> observable = Client.getINSTANCE().changeUserProfilePicture(body)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+            compositeDisposable.add(observable.subscribe(o -> profileMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
+        }
+    }
 
     @Override
     protected void onCleared() {

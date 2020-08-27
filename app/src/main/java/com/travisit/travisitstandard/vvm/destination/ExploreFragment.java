@@ -1,64 +1,228 @@
 package com.travisit.travisitstandard.vvm.destination;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.TextView;
+import android.widget.Toast;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link ExploreFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.gson.JsonArray;
+import com.travisit.travisitstandard.R;
+import com.travisit.travisitstandard.data.Const;
+import com.travisit.travisitstandard.databinding.FragmentExploreBinding;
+import com.travisit.travisitstandard.databinding.FragmentHomeBinding;
+import com.travisit.travisitstandard.model.Offer;
+import com.travisit.travisitstandard.model.Tour;
+import com.travisit.travisitstandard.utils.SharedPrefManager;
+import com.travisit.travisitstandard.vvm.AppActivity;
+import com.travisit.travisitstandard.vvm.adapter.OffersAdapter;
+import com.travisit.travisitstandard.vvm.adapter.ToursAdapter;
+import com.travisit.travisitstandard.vvm.vm.DataVM;
+
+import java.util.ArrayList;
+
 public class ExploreFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
+    private FragmentExploreBinding binding;
+    private String selectedTab;
+    private DataVM vm;
+    private OffersAdapter offersAdapter = null;
+    private ToursAdapter toursAdapter = null;
+    public SharedPrefManager preferences;
     public ExploreFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment ExploreFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static ExploreFragment newInstance(String param1, String param2) {
-        ExploreFragment fragment = new ExploreFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_explore, container, false);
+        ((AppActivity)getActivity()).changeBottomNavVisibility(View.VISIBLE, false);
+        binding = FragmentExploreBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        preferences = new SharedPrefManager(getActivity());
+        vm = ViewModelProviders.of(this).get(DataVM.class);
+        changeSelectedTab("tours");
+        handleUserInteractions(view);
+        updateUI();
+    }
+
+    private void updateUI() {
+        String userPhotoPath = Const.IMAGES_SERVER_ADDRESS + preferences.getUser().getProfilePicture();
+        binding.fExploreSdvPp.setImageURI(Uri.parse(userPhotoPath));
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        binding.fExploreLayoutInActiveSearchBar.getRoot().setVisibility(View.VISIBLE);
+        binding.fExploreLayoutActiveSearchBar.getRoot().setVisibility(View.INVISIBLE);
+    }
+
+    private void handleUserInteractions(View view) {
+        binding.fExploreLayoutInActiveSearchBar.layoutInactiveSearchBarTvSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.fExploreLayoutInActiveSearchBar.getRoot().setVisibility(View.INVISIBLE);
+                binding.fExploreLayoutActiveSearchBar.getRoot().setVisibility(View.VISIBLE);
+                binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.requestFocus();
+                // getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                InputMethodManager inputMethodManager =
+                        (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                inputMethodManager.toggleSoftInput(
+                        InputMethodManager.SHOW_FORCED, 0);
+            }
+        });
+        binding.fExploreSdvPp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Navigation.findNavController(view).navigate(R.id.action_from_explore_to_profile);
+            }
+        });
+
+        binding.fExploreTvToursTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeSelectedTab("tours");
+            }
+        });
+        binding.fExploreTvOffersTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                changeSelectedTab("offers");
+            }
+        });
+        binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    performSearch();
+                    return true;
+                }
+                return false;
+            }
+        });
+        binding.fExploreLayoutActiveSearchBar.layoutSearchBarIvFilter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if (hasFocus) {
+                    Toast.makeText(getActivity(), "Got the focus", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getActivity(), "Lost the focus", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+    }
+
+    private void changeSelectedTab(String tab){
+        if(tab.equals("offers")){
+            binding.fExploreTvOffersTab.setBackground(getResources().getDrawable(R.drawable.rectangle_tab_background_selected));
+            binding.fExploreTvToursTab.setBackground(getResources().getDrawable(R.drawable.rectangle_tab_background));
+        } else if(tab.equals("tours")){
+            binding.fExploreTvToursTab.setBackground(getResources().getDrawable(R.drawable.rectangle_tab_background_selected));
+            binding.fExploreTvOffersTab.setBackground(getResources().getDrawable(R.drawable.rectangle_tab_background));
+        }
+        selectedTab = tab;
+        getData();
+    }
+
+    private void getData() {
+        if(selectedTab.equals("offers")){
+            vm.getOffers();
+            vm.offersMutableLiveData.observe(getActivity(), new Observer<ArrayList<Offer>>() {
+                @Override
+                public void onChanged(ArrayList<Offer> offers) {
+                    initRecyclerView(null, offers, getView());
+                }
+            });
+        } else if(selectedTab.equals("tours")){
+            vm.getTours();
+            vm.toursMutableLiveData.observe(getActivity(), new Observer<ArrayList<Tour>>() {
+                @Override
+                public void onChanged(ArrayList<Tour> tours) {
+                    initRecyclerView(tours, null, getView());
+                }
+            });
+        }
+    }
+
+    private void initRecyclerView(ArrayList<Tour> tours, ArrayList<Offer> offers, View view) {
+        if(tours != null){
+            toursAdapter = new ToursAdapter(tours, getActivity(), new ToursAdapter.SelectionPropagator() {
+                @Override
+                public void tourSelected(Tour tour) {
+                    //Navigate to details
+                    /*NavDirections action = HomeFragmentDirections.actionFromHomeToOfferDetails().setOffer(offer);
+                    Navigation.findNavController(view).navigate(action);*/
+                }
+            });
+            binding.fExploreRvOffers.setAdapter(toursAdapter);
+            binding.fExploreRvOffers.setLayoutManager(new LinearLayoutManager(
+                    getActivity(),
+                    RecyclerView.VERTICAL,
+                    false
+            ));
+            toursAdapter.getFilter().filter("");
+        } else {
+            offersAdapter = new OffersAdapter(offers, getActivity(), new OffersAdapter.SelectionPropagator() {
+                @Override
+                public void offerSelected(Offer offer) {
+                    //Navigate to details
+                    /*NavDirections action = HomeFragmentDirections.actionFromHomeToOfferDetails().setOffer(offer);
+                    Navigation.findNavController(view).navigate(action);*/
+                }
+            });
+            binding.fExploreRvOffers.setAdapter(offersAdapter);
+            binding.fExploreRvOffers.setLayoutManager(new LinearLayoutManager(
+                    getActivity(),
+                    RecyclerView.VERTICAL,
+                    false
+            ));
+            offersAdapter.getFilter().filter("");
+        }
+
+    }
+
+    private void performSearch() {
+        binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.clearFocus();
+        InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        in.hideSoftInputFromWindow(binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.getWindowToken(), 0);
+        //...perform search
+        if(selectedTab.equals("tours") && toursAdapter != null){
+            toursAdapter.getFilter().filter(binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.getText().toString());
+        } else if(selectedTab.equals("offers") && offersAdapter != null){
+            offersAdapter.getFilter().filter(binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.getText().toString());
+        }
     }
 }

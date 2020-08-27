@@ -114,6 +114,81 @@
                     android:inputType="number"
                     android:textColor="@color/colorPlaceholderLightGrey" />
             </com.google.android.material.textfield.TextInputLayout>
+            <!-- Qualifications Section TextView -->
+            <TextView
+                android:id="@+id/f_guide_complete_profile_tv_qualifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/segoeui_font"
+                android:text="@string/qualifications"
+                android:textColor="@color/colorSubHeaderSummerSky"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_phone" />
+            <!-- Education Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_guide_complete_profile_til_education"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:hint="@string/hint_education"
+                app:layout_constraintEnd_toEndOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_tv_qualifications">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_guide_complete_profile_tiet_education"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:inputType="text"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- Membership Number Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_guide_complete_profile_til_membership_number"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_membership_number"
+                app:layout_constraintEnd_toEndOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_education">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_guide_complete_profile_tiet_membership_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:inputType="number"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
+            <!-- License Number Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_guide_complete_profile_til_license_number"
+                style="@style/customOutLinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_license_number"
+                app:layout_constraintEnd_toEndOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_membership_number">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/f_guide_complete_profile_tiet_license_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:maxLines="1"
+                    android:inputType="number"
+                    android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
              <!-- Languages Dropdown-->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/f_guide_complete_profile_til_languages"
@@ -124,7 +199,7 @@
                 android:hint="@string/hint_languages"
                 app:layout_constraintEnd_toEndOf="@id/f_guide_complete_profile_til_full_name"
                 app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
-                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_phone">
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_license_number">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/f_guide_complete_profile_tiet_lang"
                     android:layout_width="match_parent"
@@ -152,21 +227,33 @@
                     android:inputType="numberDecimal"
                     android:textColor="@color/colorPlaceholderLightGrey" />
             </com.google.android.material.textfield.TextInputLayout>
+            <!-- Qualifications Section TextView -->
+            <TextView
+                android:id="@+id/f_guide_complete_profile_tv_preferences"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/segoeui_font"
+                android:text="@string/preferences"
+                android:textColor="@color/colorSubHeaderSummerSky"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_experience_years" />
             <!-- Areas Selection TextView -->
             <TextView
                 android:id="@+id/f_guide_complete_profile_tv_areas"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="15dp"
                 android:fontFamily="@font/segoeui_font"
                 android:text="@string/areas"
                 android:textColor="@color/colorSubHeaderSummerSky"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
-                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_experience_years" />
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_tv_preferences" />
             <!-- Areas RecyclerView -->
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/f_guide_complete_profile_rv_categories"
+                android:id="@+id/f_guide_complete_profile_rv_areas"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
@@ -174,6 +261,25 @@
                 app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
                 app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_tv_areas"
                 tools:listitem="@layout/item_summer_sky_chip" />
+            <!-- Rate Per hour Input Field-->
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/f_guide_complete_profile_til_rate"
+                style="@style/customOutLinedBox"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
+                android:hint="@string/hint_rate"
+                app:layout_constraintStart_toStartOf="@id/f_guide_complete_profile_til_full_name"
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_rv_areas">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/f_guide_complete_profile_tiet_rate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:includeFontPadding="false"
+                android:maxLines="1"
+                android:inputType="numberDecimal"
+                android:textColor="@color/colorPlaceholderLightGrey" />
+            </com.google.android.material.textfield.TextInputLayout>
             <!--  Submit for Verification Button  -->
             <Button
                 android:id="@+id/f_guide_complete_profile_btn_submit"
@@ -192,8 +298,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_rv_categories" />
-
+                app:layout_constraintTop_toBottomOf="@id/f_guide_complete_profile_til_rate"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

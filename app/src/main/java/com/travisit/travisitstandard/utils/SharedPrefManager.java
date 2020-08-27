@@ -13,7 +13,7 @@ public class SharedPrefManager {
     private SharedPreferences sharedPreferences;
 
     //Name of Shared Preference file
-    private String PREFERENCES_FILE_NAME = "PREFERENCES_TRAVISIT_BUSINESS";
+    private String PREFERENCES_FILE_NAME = "PREFERENCES_TRAVISIT_STANDARD";
 
 //    @Inject
     public SharedPrefManager(Context context) {
@@ -63,7 +63,11 @@ public class SharedPrefManager {
         User user = gson.fromJson(json, User.class);
         return user.getToken();
     }
-
+    public void logout(){
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.commit();
+    }
 //    public void setNotificationsEnabled(boolean enabled){
 //        SharedPreferences.Editor edit = sharedPreferences.edit();
 //        edit.putBoolean(NOTIFICATIONS_ENABLED, enabled);

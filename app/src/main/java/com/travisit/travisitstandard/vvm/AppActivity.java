@@ -38,10 +38,15 @@ public class AppActivity extends AppCompatActivity implements BottomNavigationCo
      *
      */
     @Override
-    public void changeBottomNavVisibility(Integer isVisible) {
+    public void changeBottomNavVisibility(Integer isVisible, Boolean hideFabAlone) {
         binding.activityAppBottomNavBar.setVisibility(isVisible);
         if(isTourGuide){
-            binding.activityAppFabAdd.setVisibility(isVisible);
+            //binding.activityAppFabAdd.setVisibility(isVisible);
+            if(hideFabAlone){
+                binding.activityAppFabAdd.setVisibility(View.GONE);
+            } else {
+                binding.activityAppFabAdd.setVisibility(isVisible);
+            }
         } else {
             binding.activityAppFabAdd.setVisibility(View.GONE);
         }
