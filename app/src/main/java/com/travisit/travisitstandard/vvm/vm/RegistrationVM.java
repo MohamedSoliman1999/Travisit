@@ -32,6 +32,8 @@ public class RegistrationVM extends ViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        compositeDisposable.clear();
+        try {
+            compositeDisposable.clear();
+        }catch (Exception e){}
     }
 }

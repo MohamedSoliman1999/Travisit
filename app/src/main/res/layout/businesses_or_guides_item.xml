@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
+    android:layout_gravity="end"
+    android:layout_height="200dp">
+    <!-- CardView-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/card_item"
+            android:layout_width="300dp"
+            android:layout_height="150dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/businesses_or_guides_item"
+            android:elevation="20dp">
+            <LinearLayout
+                android:id="@+id/rateContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="50dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:id="@+id/rateOrBranch_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular_font"
+                    android:text="Rate"
+                    android:textColor="@color/colorSearchBarPlaceholder"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/rateOrBranchVal_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_dollar"
+                    android:layout_gravity="center"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/poppins_regular_font"
+                    android:text="20"
+                    android:textColor="@color/colorRatingSaffron"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/toursContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/rateContainer">
+
+                <TextView
+                    android:id="@+id/tourOrOffer_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular_font"
+                    android:text="Tours"
+                    android:textColor="@color/colorSearchBarPlaceholder"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tourOrOfferVal_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular_font"
+                    android:text="12"
+                    android:textColor="@color/colorRatingSaffron"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ratingContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="25dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/toursContainer">
+
+                <TextView
+                    android:id="@+id/rating_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_regular_font"
+                    android:text="Rating"
+                    android:textColor="@color/colorSearchBarPlaceholder"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/ratingVal_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:drawableStart="@drawable/ic_star"
+                    android:drawablePadding="5dp"
+                    android:fontFamily="@font/poppins_regular_font"
+                    android:text="20"
+                    android:textColor="@color/colorRatingSaffron"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="@id/ratingContainer"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/name_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Name"
+                    android:textColor="@color/colorHeaderBlack"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/LanguageOrCategory_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="English, French"
+                    android:textColor="@color/RedGradientEnd"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+    <!-- Guid Image -->
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/Guid_Img"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_width="110dp"
+        android:layout_height="110dp"
+        app:roundedCornerRadius="16dp"
+        app:actualImageResource="@drawable/guid"
+        app:actualImageScaleType="fitCenter"
+        android:layout_marginEnd="250dp"/>
+</RelativeLayout>

@@ -12,7 +12,15 @@ public class Tour implements Serializable {
     private String updatedAt = null;
     private String createdAt = null;
     private Boolean isCompleted = null;
-
+    private Boolean type=null;
+    public Tour(String title, String program, Double hourRate, String startTime, String endTime, Boolean isCompleted) {
+        this.title = title;
+        this.program = program;
+        this.hourRate = hourRate;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.isCompleted = isCompleted;
+    }
     public Tour(Integer id, String title, String program, Double hourRate, String startTime, String endTime, String updatedAt, String createdAt, Boolean isCompleted) {
         this.id = id;
         this.title = title;
@@ -28,35 +36,27 @@ public class Tour implements Serializable {
     public Integer getId() {
         return id;
     }
-
     public void setId(Integer id) {
         this.id = id;
     }
-
     public String getTitle() {
         return title;
     }
-
     public void setTitle(String title) {
         this.title = title;
     }
-
     public String getProgram() {
         return program;
     }
-
     public void setProgram(String program) {
         this.program = program;
     }
-
     public Double getHourRate() {
         return hourRate;
     }
-
     public void setHourRate(Double hourRate) {
         this.hourRate = hourRate;
     }
-
     public String getStartTime() {
         return startTime;
     }

@@ -9,12 +9,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.NavDirections;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,11 +22,9 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.JsonArray;
 import com.travisit.travisitstandard.R;
 import com.travisit.travisitstandard.data.Const;
 import com.travisit.travisitstandard.databinding.FragmentExploreBinding;
-import com.travisit.travisitstandard.databinding.FragmentHomeBinding;
 import com.travisit.travisitstandard.model.Offer;
 import com.travisit.travisitstandard.model.Tour;
 import com.travisit.travisitstandard.utils.SharedPrefManager;

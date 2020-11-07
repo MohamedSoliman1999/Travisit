@@ -1,6 +1,5 @@
 package com.travisit.travisitstandard.data;
 
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.travisit.travisitstandard.model.Language;
 import com.travisit.travisitstandard.model.Offer;
@@ -82,7 +81,9 @@ public class Client {
         okHttpClient = initHttpClient(token);
         INSTANCE = new Client();
     }
-
+    public Observable<User> getProfile() {
+        return services.getProfile();
+    }
     public Observable<User> signUp(SignUpForm userData) {
         return services.signUp(userData);
     }
@@ -127,5 +128,10 @@ public class Client {
     public Observable<ArrayList<Language>> getLanguages() {
         return services.getLanguages(0,50);
     }
-
+    public Observable<Tour> addTour(Tour tour) {
+        return services.addTour(tour);
+    }
+    public Observable<Tour> uploadTourPhotos(MultipartBody.Part photoFile1, MultipartBody.Part photoFile2, MultipartBody.Part photoFile3) {
+        return services.uploadTourPhotos(photoFile1, photoFile2, photoFile3);
+    }
 }

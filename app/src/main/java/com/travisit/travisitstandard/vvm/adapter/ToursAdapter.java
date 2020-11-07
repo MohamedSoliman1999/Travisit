@@ -1,8 +1,6 @@
 package com.travisit.travisitstandard.vvm.adapter;
 
 import android.content.Context;
-import android.net.Uri;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.facebook.drawee.view.SimpleDraweeView;
 import com.travisit.travisitstandard.R;
-import com.travisit.travisitstandard.data.Const;
 import com.travisit.travisitstandard.model.Tour;
 
 import java.util.ArrayList;

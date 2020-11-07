@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorWhite"
     tools:context=".homeFragment">
-
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/fragment_home_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="@font/segoeui_font"
+        android:text="@string/home"
+        android:textColor="@color/colorHeaderBlack"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/f_explore_sdv_pp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/f_explore_sdv_pp" />
+    <!-- User Profile Picture -->
+    <com.facebook.drawee.view.SimpleDraweeView
+        android:id="@+id/f_explore_sdv_pp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="15dp"
+        app:actualImageResource="@drawable/dummy_pp"
+        app:actualImageScaleType="centerInside"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:roundedCornerRadius="35dp"
+        app:roundingBorderColor="@color/colorBorderSummerSky"
+        app:roundingBorderWidth="1dp" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/home_tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
-
-</FrameLayout>
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/f_explore_sdv_pp">
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/home_viewPager"
+        app:layout_constraintTop_toBottomOf="@id/home_tab_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -53,6 +53,20 @@
         <item name="colorOnBackground">@color/colorWhite</item>
         <item name="android:textColor">@color/colorPlaceholderLightGrey</item>
     </style>
-
-
+    <style name="customFilledExposedDropDown" parent="Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu">
+        <item name="boxBackgroundColor">#f5f5f5</item>
+        <item name="android:strokeColor">@color/colorGreenMessage</item>
+        <item name="hintTextColor">@color/colorPlaceholderGrey</item>
+        <item name="colorControlActivated">@color/colorGreenMessage</item>
+    </style>
+<!--TabLayout Style-->
+    <style name="MineCustomTabText" parent="TextAppearance.Design.Tab">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">#000</item>
+        <item name="color">#000</item>
+        <item name="colorPrimary">@color/colorPlaceholderLightGrey</item>
+        <item name="colorSecondary">@color/RedGradientEnd</item>
+        <item name="android:fontFamily">@font/segoeui_font</item>
+    </style>
 </resources>

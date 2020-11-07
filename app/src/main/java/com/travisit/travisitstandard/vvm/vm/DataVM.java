@@ -5,12 +5,9 @@ import android.util.Log;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.google.gson.JsonArray;
 import com.travisit.travisitstandard.data.Client;
 import com.travisit.travisitstandard.model.Offer;
 import com.travisit.travisitstandard.model.Tour;
-import com.travisit.travisitstandard.model.User;
-import com.travisit.travisitstandard.model.forms.SignUpForm;
 
 import java.util.ArrayList;
 

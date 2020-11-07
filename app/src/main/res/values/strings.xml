@@ -86,5 +86,17 @@
     <string name="change_pp">Change Profile Picture</string>
     <string name="hint_user_name">Username</string>
     <string name="hint_phone_number">Phone Number</string>
-
+    <string name="save_option">Save</string>
+    <string name="cancel_option">Cancel</string>
+    <string name="hint_title">Title</string>
+    <string name="hint_description">Description</string>
+    <string name="hint_start_date">Start Date</string>
+    <string name="hint_end_date">End Date</string>
+    <string name="branch">Branch</string>
+    <string name="tour_edit_header">Edit Tour</string>
+    <string name="tour_add_header">Add New Tour</string>
+    <string name="tour_pictures">Pictures</string>
+    <string name="add_now">Add now</string>
+    <string name="update_now">Save</string>
+    <string name="home">Home</string>
 </resources>

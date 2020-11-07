@@ -42,7 +42,7 @@ public class ProfileVM extends ViewModel {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
 
-        compositeDisposable = newa CompositeDisposable();
+        compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(observable.subscribe(o -> profileMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
     }
     public void editGuideProfileWithLinks(String fullName, String email, String phone, String education, String workExperience, Integer hourlyRate, Integer membershipNumber, Integer licenseNumber, String facebookLink, String twitterLink, String linkedinLink, String instagramLink) {
@@ -111,7 +111,14 @@ public class ProfileVM extends ViewModel {
             compositeDisposable.add(observable.subscribe(o -> profileMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
         }
     }
+    public void getProfile() {
+        Observable<User> observable = Client.getINSTANCE().getProfile()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
 
+        compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(observable.subscribe(o -> profileMutableLiveData.setValue(o), e -> Log.d("PVMError", e.getMessage())));
+    }
     @Override
     protected void onCleared() {
         super.onCleared();
