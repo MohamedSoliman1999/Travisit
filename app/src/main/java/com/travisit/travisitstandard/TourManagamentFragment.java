@@ -93,7 +93,7 @@ public class TourManagamentFragment extends Fragment {
             endDateCalendar.set(Calendar.YEAR, year);
             endDateCalendar.set(Calendar.MONTH, monthOfYear);
             endDateCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            binding.fTourManagementTietStartDate.setText(sdf.format(endDateCalendar.getTime()));
+            binding.fTourManagementTietEndDate.setText(sdf.format(endDateCalendar.getTime()));
         }
     };
     public TourManagamentFragment() {
@@ -219,8 +219,7 @@ public class TourManagamentFragment extends Fragment {
 
     }
     private void pickImage(int requestCode) {
-        Intent intent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         intent.setType("image/*");
         if (intent.resolveActivity(getActivity().getPackageManager()) != null) {
             startActivityForResult(intent, requestCode);

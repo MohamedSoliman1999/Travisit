@@ -1,6 +1,7 @@
 package com.travisit.travisitstandard.vvm;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavDestination;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -14,6 +15,11 @@ import android.view.View;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.travisit.travisitstandard.R;
 import com.travisit.travisitstandard.databinding.ActivityAppBinding;
+import com.travisit.travisitstandard.vvm.destination.AccountFragment;
+import com.travisit.travisitstandard.vvm.destination.ExploreFragment;
+import com.travisit.travisitstandard.vvm.destination.NotificationsFragment;
+import com.travisit.travisitstandard.vvm.destination.chatListFragment;
+import com.travisit.travisitstandard.vvm.destination.homeFragment;
 import com.travisit.travisitstandard.vvm.observer.BottomNavigationControl;
 import com.travisit.travisitstandard.vvm.observer.IOnBackPressed;
 
@@ -58,8 +64,28 @@ public class AppActivity extends AppCompatActivity implements BottomNavigationCo
     public void onBackPressed() {
         if (onBackPressedListener != null) {
             onBackPressedListener.onBackPressed();
-        } else
+        } else{
+            handleBottomNavBackStack2();
+
+        }
+    }
+    public Fragment getCurrentFragment(){
+        return navHostFragment.getChildFragmentManager().getFragments().get(0);
+    }
+    private void handleBottomNavBackStack2(){
+        Fragment currentFragment=getCurrentFragment();
+        if (currentFragment instanceof homeFragment){
+            finish();
+        }
+        else if (currentFragment instanceof chatListFragment||currentFragment instanceof NotificationsFragment ||currentFragment instanceof AccountFragment ||currentFragment instanceof ExploreFragment){
+            loadFragment(currentFragment);
+            binding.activityAppBottomNavBar.getMenu().getItem(0).setChecked(true);
+        }else {
             super.onBackPressed();
+        }
+    }
+    private void loadFragment(Fragment fragment){
+        Navigation.findNavController(fragment.getView()).navigate(R.id.action_to_home);
     }
     private void handleUserInteractions() {
         binding.activityAppFabAdd.setOnClickListener(new View.OnClickListener() {

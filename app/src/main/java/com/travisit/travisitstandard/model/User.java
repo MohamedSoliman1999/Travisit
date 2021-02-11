@@ -6,6 +6,8 @@ import com.travisit.travisitstandard.utils.UserType;
 import java.io.Serializable;
 
 public class User implements Serializable {
+
+    private String error=null;
     private String token = null;
     private Integer id = null;
     private String fullName = null;
@@ -49,6 +51,10 @@ public class User implements Serializable {
         this.instagramLink = instagramLink;
         this.type = "guide";
         this.profilePicture = profilePicture;
+    }
+
+    public User(String error) {
+        this.error = error;
     }
 
     //Traveler Constructor
@@ -230,5 +236,12 @@ public class User implements Serializable {
 
     public void setProfilePicture(String profilePicture) {
         this.profilePicture = profilePicture;
+    }
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 }

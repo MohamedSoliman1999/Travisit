@@ -88,7 +88,7 @@ public class Client {
         return services.signUp(userData);
     }
 
-    public Observable<User> signIn(SignInForm userData) {
+    public Observable<retrofit2.Response<User>> signIn(SignInForm userData) {
         return services.signIn(userData);
     }
 
@@ -133,5 +133,8 @@ public class Client {
     }
     public Observable<Tour> uploadTourPhotos(MultipartBody.Part photoFile1, MultipartBody.Part photoFile2, MultipartBody.Part photoFile3) {
         return services.uploadTourPhotos(photoFile1, photoFile2, photoFile3);
+    }
+    public Observable<ArrayList<BusinessGuid>> getGuides(int page,int limit) {
+        return services.getGuides(page,limit);
     }
 }

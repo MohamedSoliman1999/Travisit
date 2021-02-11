@@ -36,68 +36,88 @@
         app:roundedCornerRadius="35dp"
         app:roundingBorderColor="@color/colorBorderSummerSky"
         app:roundingBorderWidth="1dp" />
-    <!-- Tours Tab-->
-    <TextView
-        android:id="@+id/f_explore_tv_tours_tab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/tours"
-        android:textSize="20sp"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:background="@drawable/rectangle_tab_background_selected"
-        android:textColor="@color/colorPlaceholderLightGrey"
-        android:fontFamily="@font/segoeui_font"
-        app:layout_constraintTop_toBottomOf="@id/f_explore_sdv_pp"
-        app:layout_constraintEnd_toStartOf="@id/f_explore_tv_offers_tab"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-<!-- Offers Tab-->
-    <TextView
-        android:id="@+id/f_explore_tv_offers_tab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/offers"
-        android:textSize="20sp"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:background="@drawable/rectangle_tab_background"
-        android:layout_marginTop="10dp"
-        android:textAlignment="center"
-        android:textColor="@color/colorPlaceholderLightGrey"
-        android:fontFamily="@font/segoeui_font"
-        app:layout_constraintTop_toBottomOf="@id/f_explore_sdv_pp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/f_explore_tv_tours_tab" />
-    <!-- Divider -->
-    <View
-        android:id="@+id/f_explore_v_divider"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/explore_tab_layout"
         android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintTop_toBottomOf="@id/f_explore_tv_tours_tab"
-        android:layout_marginTop="8dp"/>
-    <!-- Inactive Search Bar and Filter-->
-    <include
-        android:id="@+id/f_explore_layout_in_active_search_bar"
-        layout="@layout/layout_inactive_search_bar"
-        app:layout_constraintTop_toBottomOf="@id/f_explore_v_divider"/>
-    <!-- Active Search Bar -->
-    <include
-        android:id="@+id/f_explore_layout_active_search_bar"
-        layout="@layout/layout_active_search_bar"
-        android:visibility="gone"
-        app:layout_constraintTop_toBottomOf="@id/f_explore_v_divider"/>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/f_explore_rv_offers"
+        style="@style/TabLayoutStyleSoliman"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        app:layout_constraintTop_toBottomOf="@id/f_explore_sdv_pp">
+    </com.google.android.material.tabs.TabLayout>
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/explore_viewPager"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/explore_tab_layout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/f_explore_layout_in_active_search_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:paddingBottom="40dp"
-        tools:listitem="@layout/card_explore"/>
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"/>
+
+
+    <!-- Tours Tab-->
+<!--    <TextView-->
+<!--        android:id="@+id/f_explore_tv_tours_tab"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/tours"-->
+<!--        android:textSize="20sp"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:textAlignment="center"-->
+<!--        android:paddingStart="15dp"-->
+<!--        android:paddingEnd="15dp"-->
+<!--        android:background="@drawable/rectangle_tab_background_selected"-->
+<!--        android:textColor="@color/colorPlaceholderLightGrey"-->
+<!--        android:fontFamily="@font/segoeui_font"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/f_explore_sdv_pp"-->
+<!--        app:layout_constraintEnd_toStartOf="@id/f_explore_tv_offers_tab"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+<!--&lt;!&ndash; Offers Tab&ndash;&gt;-->
+<!--    <TextView-->
+<!--        android:id="@+id/f_explore_tv_offers_tab"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/offers"-->
+<!--        android:textSize="20sp"-->
+<!--        android:paddingStart="15dp"-->
+<!--        android:paddingEnd="15dp"-->
+<!--        android:background="@drawable/rectangle_tab_background"-->
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/colorPlaceholderLightGrey"-->
+<!--        android:fontFamily="@font/segoeui_font"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/f_explore_sdv_pp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/f_explore_tv_tours_tab" />-->
+<!--    &lt;!&ndash; Divider &ndash;&gt;-->
+<!--    <View-->
+<!--        android:id="@+id/f_explore_v_divider"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="1dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/f_explore_tv_tours_tab"-->
+<!--        android:layout_marginTop="8dp"/>-->
+<!--    &lt;!&ndash; Inactive Search Bar and Filter&ndash;&gt;-->
+<!--    <include-->
+<!--        android:id="@+id/f_explore_layout_in_active_search_bar"-->
+<!--        layout="@layout/layout_inactive_search_bar"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/f_explore_v_divider"/>-->
+<!--    &lt;!&ndash; Active Search Bar &ndash;&gt;-->
+<!--    <include-->
+<!--        android:id="@+id/f_explore_layout_active_search_bar"-->
+<!--        layout="@layout/layout_active_search_bar"-->
+<!--        android:visibility="gone"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/f_explore_v_divider"/>-->
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:id="@+id/f_explore_rv_offers"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/f_explore_layout_in_active_search_bar"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        android:paddingBottom="40dp"-->
+<!--        tools:listitem="@layout/card_explore"/>-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

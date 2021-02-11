@@ -99,4 +99,9 @@
     <string name="add_now">Add now</string>
     <string name="update_now">Save</string>
     <string name="home">Home</string>
+    <string name="businesses">Businesses</string>
+    <string name="tour_Guides">Tour Guides</string>
+    <string name="privateTour">Private</string>
+    <string name="publicTour">Public</string>
+    <string name="paymentLink">https://accept.paymobsolutions.com/api/acceptance/iframes/91457?payment_token=ZXlKaGJHY2lPaUpJVXpVeE1pSXNJblI1Y0NJNklrcFhWQ0o5LmV5SnNiMk5yWDI5eVpHVnlYM2RvWlc1ZmNHRnBaQ0k2Wm1Gc2MyVXNJbUpwYkd4cGJtZGZaR0YwWVNJNmV5Sm1hWEp6ZEY5dVlXMWxJam9pV1c5dGJtRWlMQ0pzWVhOMFgyNWhiV1VpT2lKTllXNXpiM1Z5SWl3aWMzUnlaV1YwSWpvaVJYUm9ZVzRnVEdGdVpDSXNJbUoxYVd4a2FXNW5Jam9pT0RBeU9DSXNJbVpzYjI5eUlqb2lORElpTENKaGNHRnlkRzFsYm5RaU9pSTRNRE1pTENKamFYUjVJam9pU21GemEyOXNjMnRwWW5WeVoyZ2lMQ0p6ZEdGMFpTSTZJbFYwWVdnaUxDSmpiM1Z1ZEhKNUlqb2lRMUlpTENKbGJXRnBiQ0k2SW5sdmJXNWhRR0pwZERZNExtTnZiU0lzSW5Cb2IyNWxYMjUxYldKbGNpSTZJakF4TVRJek9URTBORFF4SWl3aWNHOXpkR0ZzWDJOdlpHVWlPaUl4TWpNeElpd2laWGgwY21GZlpHVnpZM0pwY0hScGIyNGlPaUpPUVNKOUxDSnZjbVJsY2w5cFpDSTZOamcyTXpVeE5Td2lZM1Z5Y21WdVkza2lPaUpGUjFBaUxDSmhiVzkxYm5SZlkyVnVkSE1pT2pNd01EQXdMQ0p3Yld0ZmFYQWlPaUkwTVM0eE9Ua3VNakl5TGpZeUlpd2lZMkZ5WkY5cGJuUmxaM0poZEdsdmJsOXBaQ0k2TmprM01qQXNJblZ6WlhKZmFXUWlPalF6T1RZeWZRLlJSeXpYLWtQbFR6RzFvNTRwTWhZMk9pcG0wWlN6THQzWXhvOU1WTUplM3ZzVWxJSnpSdGViWE41MU5vc25zU29yLVFKWFBZR1FnQVVMOVJVWjFSdWxn</string>
 </resources>

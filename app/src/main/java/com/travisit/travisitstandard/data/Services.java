@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import io.reactivex.Completable;
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -35,7 +36,7 @@ public interface Services {
     signUp(@Body SignUpForm userData);
 
     @POST("users/login")
-    public Observable<User>
+    public Observable<Response<User>>
     signIn(@Body SignInForm userData);
 
     @POST("business/resetPasswordCode")
@@ -86,8 +87,9 @@ public interface Services {
    Observable<TourComment>editTourComment(@Path("comment_id")int commentId,@Body TourComment tourComment);
    @DELETE("tour-comments/{comment_id}")
    void deleteTourComment(@Path("comment_id")int commentId);
-
    @GET("languages")
    Observable<ArrayList<Language>> getLanguages(@Query("page_number") Integer pageNumber, @Query("page_size") Integer pageSize);
+   @GET("api/guide")
+   Observable<ArrayList<BusinessGuid>>getGuides(@Query("page_number") int page , @Query("page_size")int limit);
 
 }

@@ -1,6 +1,7 @@
 package com.travisit.travisitstandard.vvm.vm;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -11,11 +12,13 @@ import com.travisit.travisitstandard.model.User;
 import com.travisit.travisitstandard.model.forms.EmailForm;
 import com.travisit.travisitstandard.model.forms.ResetPasswordForm;
 import com.travisit.travisitstandard.model.forms.SignInForm;
+import com.travisit.travisitstandard.utils.TravisitApp;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 public class AuthenticationVM extends ViewModel {
     public MutableLiveData<User> userMutableLiveData = new MutableLiveData<>();
@@ -26,13 +29,22 @@ public class AuthenticationVM extends ViewModel {
     CompositeDisposable compositeDisposable;
     public void signIn(String email, String password){
         SignInForm signInForm = new SignInForm(email, password);
-        Observable<User> observable = Client.getINSTANCE().signIn(signInForm)
+        Observable<Response<User>> observable = Client.getINSTANCE().signIn(signInForm)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(
-                observable.subscribe(o-> userMutableLiveData.setValue(o),
-                e-> Log.d("PVMError",e.getMessage())));
+                observable.subscribe(o-> {
+                    if (o.body().getError()!=null){
+                        Toast.makeText(TravisitApp.getInstance().getApplicationContext(), o.body().getError(), Toast.LENGTH_SHORT).show();
+                    }else{
+                        userMutableLiveData.setValue(o.body());
+                        Toast.makeText(TravisitApp.getInstance().getApplicationContext(), "Sign In Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                    },
+                e-> {Log.e("PVMErrorff",e.getMessage());
+                    Toast.makeText(TravisitApp.getInstance().getApplicationContext(), "Please Check Internet Connection", Toast.LENGTH_SHORT).show();
+                }));
     }
 
     public void RequestNewPasswordCode(String email){

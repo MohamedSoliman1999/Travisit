@@ -1,6 +1,7 @@
 package com.travisit.travisitstandard.vvm.vm;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.travisit.travisitstandard.data.Client;
 import com.travisit.travisitstandard.model.User;
 import com.travisit.travisitstandard.model.forms.SignUpForm;
+import com.travisit.travisitstandard.utils.TravisitApp;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -25,8 +27,19 @@ public class RegistrationVM extends ViewModel {
 
         compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(observable.subscribe(
-                o-> userMutableLiveData.setValue(o),
-                e-> Log.d("PVMError",e.getMessage())));
+                o-> {
+                    if (o.getError()!=null){
+                        Toast.makeText(TravisitApp.getInstance().getApplicationContext(), o.getError(), Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        userMutableLiveData.setValue(o);
+                        Toast.makeText(TravisitApp.getInstance().getApplicationContext(), "Sign Up Successfully", Toast.LENGTH_SHORT).show();
+                    }
+                },
+                e-> {
+                    Toast.makeText(TravisitApp.getInstance().getApplicationContext(), "Please Check Internet Connection", Toast.LENGTH_SHORT).show();
+                    Log.e("PVMError",e.getMessage());
+                }));
     }
 
     @Override

@@ -3,7 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/app_nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/splashFragment">
+    <action
+        android:id="@+id/action_to_home"
+        app:destination="@id/homeFragment"
+        app:enterAnim="@anim/slide_from_out_right_to_center"
+        app:exitAnim="@anim/slide_from_center_to_out_left">
+    </action>
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.travisit.travisitstandard.vvm.destination.SplashFragment"
@@ -12,6 +18,13 @@
         <action
             android:id="@+id/action_to_auth_graph"
             app:destination="@id/auth_graph"
+            app:enterAnim="@anim/slide_from_out_right_to_center"
+            app:exitAnim="@anim/slide_from_center_to_out_left"
+            app:popUpTo="@id/app_nav_graph"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_splash_to_home"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_from_out_right_to_center"
             app:exitAnim="@anim/slide_from_center_to_out_left"
             app:popUpTo="@id/app_nav_graph"
@@ -274,12 +287,27 @@
         tools:layout="@layout/fragment_tour_managament" />
     <fragment
         android:id="@+id/home_tour_guid_fragment"
-        android:name="com.travisit.travisitstandard.home_tour_guid_fragment"
+        android:name="com.travisit.travisitstandard.HomeTourGuidFragment"
         android:label="fragment_home_tour_guid_fragment"
         tools:layout="@layout/fragment_home_tour_guid_fragment" />
     <fragment
         android:id="@+id/home_businesses_fragment"
-        android:name="com.travisit.travisitstandard.home_businesses_fragment"
+        android:name="com.travisit.travisitstandard.HomeBusinessesFragment"
         android:label="fragment_home_businesses_fragment"
         tools:layout="@layout/fragment_home_businesses_fragment" />
+    <fragment
+        android:id="@+id/paymentFragment"
+        android:name="com.travisit.travisitstandard.vvm.destination.PaymentFragment"
+        android:label="fragment_payment"
+        tools:layout="@layout/fragment_payment" />
+    <fragment
+        android:id="@+id/toursFragment"
+        android:name="com.travisit.travisitstandard.ToursFragment"
+        android:label="fragment_tours"
+        tools:layout="@layout/fragment_tours" />
+    <fragment
+        android:id="@+id/offersFragment"
+        android:name="com.travisit.travisitstandard.OffersFragment"
+        android:label="fragment_offers"
+        tools:layout="@layout/fragment_offers" />
 </navigation>

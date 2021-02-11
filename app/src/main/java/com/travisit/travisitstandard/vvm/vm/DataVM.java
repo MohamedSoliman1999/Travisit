@@ -58,6 +58,8 @@ public class DataVM extends ViewModel {
     @Override
     protected void onCleared() {
         super.onCleared();
-        compositeDisposable.clear();
+        if (compositeDisposable!=null){
+            compositeDisposable.clear();
+        }
     }
 }

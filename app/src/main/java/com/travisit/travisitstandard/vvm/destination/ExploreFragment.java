@@ -1,39 +1,28 @@
 package com.travisit.travisitstandard.vvm.destination;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.navigation.Navigation;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
-import android.widget.Toast;
 
+import com.travisit.travisitstandard.OffersFragment;
 import com.travisit.travisitstandard.R;
+import com.travisit.travisitstandard.ToursFragment;
 import com.travisit.travisitstandard.data.Const;
 import com.travisit.travisitstandard.databinding.FragmentExploreBinding;
-import com.travisit.travisitstandard.model.Offer;
-import com.travisit.travisitstandard.model.Tour;
 import com.travisit.travisitstandard.utils.SharedPrefManager;
 import com.travisit.travisitstandard.vvm.AppActivity;
 import com.travisit.travisitstandard.vvm.adapter.OffersAdapter;
 import com.travisit.travisitstandard.vvm.adapter.ToursAdapter;
+import com.travisit.travisitstandard.vvm.adapter.ViewPagerAdapter;
 import com.travisit.travisitstandard.vvm.vm.DataVM;
-
-import java.util.ArrayList;
 
 public class ExploreFragment extends Fragment {
     private FragmentExploreBinding binding;
@@ -61,7 +50,7 @@ public class ExploreFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         preferences = new SharedPrefManager(getActivity());
         vm = ViewModelProviders.of(this).get(DataVM.class);
-        changeSelectedTab("tours");
+//        changeSelectedTab("tours");
         handleUserInteractions(view);
         updateUI();
     }
@@ -75,11 +64,37 @@ public class ExploreFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        binding.fExploreLayoutInActiveSearchBar.getRoot().setVisibility(View.VISIBLE);
-        binding.fExploreLayoutActiveSearchBar.getRoot().setVisibility(View.INVISIBLE);
+//        binding.fExploreLayoutInActiveSearchBar.getRoot().setVisibility(View.VISIBLE);
+//        binding.fExploreLayoutActiveSearchBar.getRoot().setVisibility(View.INVISIBLE);
     }
 
     private void handleUserInteractions(View view) {
+        initTabAdapter();
+    }
+
+    private void initTabAdapter(){
+        ToursFragment toursFragment = new ToursFragment();
+        OffersFragment offersFragment = new OffersFragment();
+        binding.exploreTabLayout.setupWithViewPager(binding.exploreViewPager);
+//    ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getActivity().getSupportFragmentManager(),0);
+        ViewPagerAdapter viewPagerAdapter=new ViewPagerAdapter(getChildFragmentManager(),0);
+        viewPagerAdapter.resetAdapter();
+        viewPagerAdapter.insertFragment(toursFragment,getString(R.string.tours));
+        viewPagerAdapter.insertFragment(offersFragment,getString(R.string.offers));
+        binding.exploreViewPager.setAdapter(viewPagerAdapter);
+        setTabItemMargin();
+    }
+    private void setTabItemMargin(){
+        for(int i=0; i < binding.exploreTabLayout.getTabCount(); i++) {
+            View tab = ((ViewGroup) binding.exploreTabLayout.getChildAt(0)).getChildAt(i);
+            ViewGroup.MarginLayoutParams p = (ViewGroup.MarginLayoutParams) tab.getLayoutParams();
+            p.setMargins(50, 0, 50, 0);
+            tab.requestLayout();
+        }
+    }
+
+        /*
+    }
         binding.fExploreLayoutInActiveSearchBar.layoutInactiveSearchBarTvSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,24 +107,12 @@ public class ExploreFragment extends Fragment {
                 inputMethodManager.toggleSoftInput(
                         InputMethodManager.SHOW_FORCED, 0);
             }
-        });
+        });*/
+   /*
         binding.fExploreSdvPp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Navigation.findNavController(view).navigate(R.id.action_from_explore_to_profile);
-            }
-        });
-
-        binding.fExploreTvToursTab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeSelectedTab("tours");
-            }
-        });
-        binding.fExploreTvOffersTab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                changeSelectedTab("offers");
             }
         });
         binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -139,8 +142,8 @@ public class ExploreFragment extends Fragment {
             }
         });
 
-    }
-
+    }*/
+/*
     private void changeSelectedTab(String tab){
         if(tab.equals("offers")){
             binding.fExploreTvOffersTab.setBackground(getResources().getDrawable(R.drawable.rectangle_tab_background_selected));
@@ -151,8 +154,8 @@ public class ExploreFragment extends Fragment {
         }
         selectedTab = tab;
         getData();
-    }
-
+    }*/
+/*
     private void getData() {
         if(selectedTab.equals("offers")){
             vm.getOffers();
@@ -172,15 +175,16 @@ public class ExploreFragment extends Fragment {
             });
         }
     }
-
+*/
+/*
     private void initRecyclerView(ArrayList<Tour> tours, ArrayList<Offer> offers, View view) {
         if(tours != null){
             toursAdapter = new ToursAdapter(tours, getActivity(), new ToursAdapter.SelectionPropagator() {
                 @Override
                 public void tourSelected(Tour tour) {
                     //Navigate to details
-                    /*NavDirections action = HomeFragmentDirections.actionFromHomeToOfferDetails().setOffer(offer);
-                    Navigation.findNavController(view).navigate(action);*/
+//                    NavDirections action = HomeFragmentDirections.actionFromHomeToOfferDetails().setOffer(offer);
+//                    Navigation.findNavController(view).navigate(action);
                 }
             });
             binding.fExploreRvOffers.setAdapter(toursAdapter);
@@ -195,8 +199,8 @@ public class ExploreFragment extends Fragment {
                 @Override
                 public void offerSelected(Offer offer) {
                     //Navigate to details
-                    /*NavDirections action = HomeFragmentDirections.actionFromHomeToOfferDetails().setOffer(offer);
-                    Navigation.findNavController(view).navigate(action);*/
+//                    NavDirections action = HomeFragmentDirections.actionFromHomeToOfferDetails().setOffer(offer);
+                    Navigation.findNavController(view).navigate(action);
                 }
             });
             binding.fExploreRvOffers.setAdapter(offersAdapter);
@@ -209,8 +213,8 @@ public class ExploreFragment extends Fragment {
         }
 
     }
-
-    private void performSearch() {
+*/
+    private void performSearch() {/*
         binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.clearFocus();
         InputMethodManager in = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         in.hideSoftInputFromWindow(binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.getWindowToken(), 0);
@@ -219,6 +223,6 @@ public class ExploreFragment extends Fragment {
             toursAdapter.getFilter().filter(binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.getText().toString());
         } else if(selectedTab.equals("offers") && offersAdapter != null){
             offersAdapter.getFilter().filter(binding.fExploreLayoutActiveSearchBar.layoutSearchBarEtSearch.getText().toString());
-        }
+        }*/
     }
 }
