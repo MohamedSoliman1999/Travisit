@@ -2,6 +2,23 @@
 app user: Traviler and tour guides. 
 It is all about tours app that manages tours creation and guides profile and guides license and displays all payment for tour guides and their tours and other useful services.
 
+
+Techbology:
+- android: Java native
+- signle activity app using navigation component
+- real time database using firebase
+- kotlin coroutines and retrofit
+- clean archticture using MVVM and Life data
+- Payment method
+- Data Binding
+- chashing data using Room database and pagination technique
+- Push notification using FCM
+- dependancy injection using dagger hilt
+- Repositry Pattern
+- Fresco Library
+
+
+
 ![Traveller home tab 1](https://user-images.githubusercontent.com/49350237/107752240-23666f80-6d27-11eb-9efc-be7bd375393c.png)
 ![Traveller home tab 2](https://user-images.githubusercontent.com/49350237/107752244-24979c80-6d27-11eb-836f-daa6ad1cf233.png)
 ![Add offer screen](https://user-images.githubusercontent.com/49350237/107752249-25303300-6d27-11eb-9ba3-510e100e1fd0.png)
